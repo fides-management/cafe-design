@@ -72,6 +72,7 @@
             left: 50%;
             transform: translateX(-50%);
         }
+        
 
         .btn {
             display: inline-block;
@@ -305,7 +306,7 @@
             100% { transform: translateX(0); }
         }
 
-        /* Social Proof Section - Fixed with Sliding Instagram */
+        /* Social Proof Section - Desktop: Grid, Mobile: Slider */
         .social-proof {
             padding: 80px 0;
             background-color: rgba(255, 255, 255, 0.5);
@@ -319,36 +320,38 @@
             font-size: 2.2rem;
         }
 
-        .instagram-slider-container {
-            position: relative;
-            max-width: 1000px;
+        /* Desktop Instagram Grid (shows all 4 images) */
+        .instagram-grid-desktop {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
             margin: 0 auto 40px;
+            max-width: 1100px;
+        }
+
+        .insta-item-desktop {
+            height: 280px;
+            border-radius: 15px;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .instagram-slider {
-            display: flex;
-            transition: transform 1s ease;
-        }
-
-        .insta-slide {
-            min-width: 25%;
-            height: 300px;
             position: relative;
-            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
 
-        .insta-slide img {
+        .insta-item-desktop:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(92, 61, 46, 0.15);
+        }
+
+        .insta-item-desktop img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
-        .insta-slide:hover img {
-            transform: scale(1.05);
+        .insta-item-desktop:hover img {
+            transform: scale(1.08);
         }
 
         .insta-caption {
@@ -360,6 +363,7 @@
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
             color: white;
             font-size: 0.9rem;
+            z-index: 2;
         }
 
         .insta-icon {
@@ -376,6 +380,37 @@
             justify-content: center;
             font-size: 1.2rem;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+        /* Mobile Instagram Slider (hidden on desktop) */
+        .instagram-slider-mobile {
+            display: none;
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto 40px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .instagram-slider {
+            display: flex;
+            transition: transform 0.8s ease;
+        }
+
+        .insta-slide {
+            min-width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insta-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
         }
 
         .slider-btn {
@@ -404,11 +439,11 @@
         }
 
         .slider-btn.prev {
-            left: 20px;
+            left: 15px;
         }
 
         .slider-btn.next {
-            right: 20px;
+            right: 15px;
         }
 
         .slider-dots {
@@ -416,7 +451,7 @@
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .dot {
@@ -557,7 +592,7 @@
             color: var(--primary-color);
         }
 
-        /* Location Section - Fixed with Real Google Map */
+        /* Location Section */
         .location-container {
             display: flex;
             flex-wrap: wrap;
@@ -723,8 +758,13 @@
                 font-size: 2.8rem;
             }
             
-            .insta-slide {
-                min-width: 50%;
+            /* Switch to mobile slider on tablet */
+            .instagram-grid-desktop {
+                display: none;
+            }
+            
+            .instagram-slider-mobile {
+                display: block;
             }
         }
 
@@ -769,10 +809,6 @@
             
             .carousel-container {
                 height: 300px;
-            }
-            
-            .insta-slide {
-                min-width: 100%;
             }
             
             .slider-btn {
@@ -869,12 +905,64 @@
         </div>
     </section>
 
-    <!-- Social Proof Section - Fixed with Sliding Instagram -->
+    <!-- Social Proof Section - Desktop: Grid, Mobile: Slider -->
     <section class="social-proof" id="social">
         <div class="container">
             <h2 class="section-title fade-in">As Seen On Instagram</h2>
             
-            <div class="instagram-slider-container fade-in">
+            <!-- Desktop Instagram Grid (shows all 4 at once) -->
+            <div class="instagram-grid-desktop fade-in">
+                <div class="insta-item-desktop">
+                    <div class="insta-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Coffee art at KIKU Colombo" 
+                         loading="lazy">
+                    <div class="insta-caption">
+                        Morning coffee ritual at KIKU ☕ #coffeelover #colombo
+                    </div>
+                </div>
+                
+                <div class="insta-item-desktop">
+                    <div class="insta-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" 
+                         alt="Ramen bowl at KIKU Colombo" 
+                         loading="lazy">
+                    <div class="insta-caption">
+                        Ramen nights are back! 🍜 #ramen #foodie
+                    </div>
+                </div>
+                
+                <div class="insta-item-desktop">
+                    <div class="insta-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1481833761820-0509d3217039?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Cozy workspace at KIKU Colombo" 
+                         loading="lazy">
+                    <div class="insta-caption">
+                        Perfect spot for work meetings ✨ #workspace #café
+                    </div>
+                </div>
+                
+                <div class="insta-item-desktop">
+                    <div class="insta-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Matcha dessert at KIKU Colombo" 
+                         loading="lazy">
+                    <div class="insta-caption">
+                        Matcha desserts that delight 🍵 #matcha #dessert
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Instagram Slider (hidden on desktop) -->
+            <div class="instagram-slider-mobile fade-in">
                 <button class="slider-btn prev">
                     <i class="fas fa-chevron-left"></i>
                 </button>
@@ -931,8 +1019,6 @@
                             Matcha desserts that delight 🍵 #matcha #dessert
                         </div>
                     </div>
-
-                    
                 </div>
                 
                 <button class="slider-btn next">
@@ -940,7 +1026,7 @@
                 </button>
                 
                 <div class="slider-dots">
-                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="0"></span>
                     <span class="dot" data-index="1"></span>
                     <span class="dot" data-index="2"></span>
                     <span class="dot" data-index="3"></span>
@@ -985,7 +1071,7 @@
     <section class="menu-section" id="menu">
         <div class="container">
             <div class="menu-header fade-in">
-                <h2 class="section-title" style="margin-bottom: 0;">Our Menu</h2>
+                <h2  style="margin-bottom: 20px; text-align: center; font-size: 2.5rem;">Our Menu</h2>
                 <div class="menu-categories">
                     <button class="category-btn active" data-category="coffee">Coffee</button>
                     <button class="category-btn" data-category="ramen">Ramen</button>
@@ -1069,7 +1155,7 @@
         </div>
     </section>
 
-    <!-- Location Section - Fixed -->
+    <!-- Location Section -->
     <section class="location" id="location">
         <div class="container">
             <h2 class="section-title fade-in">Visit Us</h2>
@@ -1279,59 +1365,123 @@
             });
         });
         
-        // Instagram Slider Functionality
-        const slider = document.querySelector('.instagram-slider');
-        const slides = document.querySelectorAll('.insta-slide');
-        const dots = document.querySelectorAll('.dot');
-        const prevBtn = document.querySelector('.slider-btn.prev');
-        const nextBtn = document.querySelector('.slider-btn.next');
-        
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-        
-        // Initialize slider
-        function updateSlider() {
-            const slideWidth = slides[0].offsetWidth;
-            slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+        // MOBILE INSTAGRAM SLIDER FUNCTIONALITY - FIXED
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Instagram Slider
+            const mobileSlider = document.querySelector('.instagram-slider-mobile');
             
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-        
-        // Next slide
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        }
-        
-        // Previous slide
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        }
-        
-        // Event listeners for buttons
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-        
-        // Event listeners for dots
-        dots.forEach(dot => {
-            dot.addEventListener('click', function() {
-                currentSlide = parseInt(this.getAttribute('data-index'));
-                updateSlider();
-            });
+            // Only initialize if mobile slider exists (it will on mobile/tablet)
+            if (mobileSlider) {
+                const slider = document.querySelector('.instagram-slider');
+                const slides = document.querySelectorAll('.insta-slide');
+                const dots = document.querySelectorAll('.dot');
+                const prevBtn = document.querySelector('.slider-btn.prev');
+                const nextBtn = document.querySelector('.slider-btn.next');
+                
+                let currentSlide = 0;
+                const totalSlides = slides.length;
+                let slideInterval;
+                
+                // Initialize slider
+                function initSlider() {
+                    // Set initial active dot
+                    updateDots();
+                    
+                    // Start auto-slide
+                    startAutoSlide();
+                    
+                    // Add click events to buttons
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', nextSlide);
+                    }
+                    
+                    if (prevBtn) {
+                        prevBtn.addEventListener('click', prevSlide);
+                    }
+                    
+                    // Add click events to dots
+                    dots.forEach(dot => {
+                        dot.addEventListener('click', function() {
+                            const index = parseInt(this.getAttribute('data-index'));
+                            goToSlide(index);
+                        });
+                    });
+                    
+                    // Pause on hover
+                    mobileSlider.addEventListener('mouseenter', pauseAutoSlide);
+                    mobileSlider.addEventListener('mouseleave', startAutoSlide);
+                    mobileSlider.addEventListener('touchstart', pauseAutoSlide);
+                    mobileSlider.addEventListener('touchend', startAutoSlide);
+                    
+                    // Update on window resize
+                    window.addEventListener('resize', updateSliderPosition);
+                }
+                
+                // Update slider position
+                function updateSliderPosition() {
+                    const slideWidth = slides[0].offsetWidth;
+                    slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+                }
+                
+                // Go to specific slide
+                function goToSlide(index) {
+                    currentSlide = index;
+                    updateSliderPosition();
+                    updateDots();
+                    resetAutoSlide();
+                }
+                
+                // Next slide
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateSliderPosition();
+                    updateDots();
+                    resetAutoSlide();
+                }
+                
+                // Previous slide
+                function prevSlide() {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateSliderPosition();
+                    updateDots();
+                    resetAutoSlide();
+                }
+                
+                // Update dots
+                function updateDots() {
+                    dots.forEach((dot, index) => {
+                        if (index === currentSlide) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+                
+                // Start auto-slide
+                function startAutoSlide() {
+                    if (slideInterval) clearInterval(slideInterval);
+                    slideInterval = setInterval(nextSlide, 5000);
+                }
+                
+                // Pause auto-slide
+                function pauseAutoSlide() {
+                    if (slideInterval) clearInterval(slideInterval);
+                }
+                
+                // Reset auto-slide timer
+                function resetAutoSlide() {
+                    pauseAutoSlide();
+                    startAutoSlide();
+                }
+                
+                // Initialize the slider
+                initSlider();
+                
+                // Initial position
+                updateSliderPosition();
+            }
         });
-        
-        // Auto-slide every 5 seconds
-        setInterval(nextSlide, 5000);
-        
-        // Handle window resize
-        window.addEventListener('resize', updateSlider);
-        
-        // Initialize slider on load
-        window.addEventListener('load', updateSlider);
         
         // Add CSS for ripple effect
         const style = document.createElement('style');
@@ -1353,6 +1503,13 @@
                 to {
                     transform: scale(4);
                     opacity: 0;
+                }
+            }
+            
+            /* Ensure mobile slider is properly displayed */
+            @media (max-width: 992px) {
+                .instagram-slider-mobile {
+                    display: block !important;
                 }
             }
         `;
